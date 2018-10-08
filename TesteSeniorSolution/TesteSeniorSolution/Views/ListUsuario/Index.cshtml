@@ -1,0 +1,60 @@
+﻿
+@{
+    Layout = "~/Views/Shared/Master.cshtml";
+}
+<script src="~/Scripts/Paginas/ListUsuario.js"></script>
+<link href="~/Content/css/ListUsuario.css" rel="stylesheet" />
+
+<div class="pagina">
+    <form>
+        <div id="consulta">
+            <fieldset>
+                <legend class="card-title h3">Informe o Id do usuário a ser consultado</legend>
+
+
+                <div class="form-group">
+                    <label for="m_id_usuario" class="label">ID do Usuário</label>
+                    <input id="m_id_usuario" type="text" class="form-control" maxlength="5" />
+                </div>
+
+                <button id="btn_buscar" type="button" class="btn btn-success">Buscar</button>
+            </fieldset>
+        </div>
+
+        <div id="formConsulta">
+            <fieldset>
+                <legend class="card-title h5">Dados do usuário</legend>
+
+                <div class="form-group">
+                    <label for="m_nome_usuario" class="label">Nome</label>
+                    <input id="m_nome_usuario" type="text" class="form-control" maxlength="120" />
+                </div>
+
+                <div class="form-group">
+                    <label for="m_sobrenome_usuario" class="label">Sobrenome</label>
+
+                    <input id="m_sobrenome_usuario" type="text" class="form-control" maxlength="120" />
+                </div>
+
+                <div class="form-group">
+                    <label for="m_email_usuario" class="label">E-mail</label>
+                    <input id="m_email_usuario" type="text" class="form-control" maxlength="60" />
+                </div>
+
+                <div class="form-group">
+                    <label for="m_telefone_usuario" class="label">Telefone</label>
+                    <input id="m_telefone_usuario" type="text" class="form-control" maxlength="60" />
+                </div>
+
+                <div class="form-group">
+                    <label for="m_endereco_usuario" class="label">Endereço</label>
+                    <input id="m_endereco_usuario" type="text" class="form-control" maxlength="60" />
+                </div>
+
+            </fieldset>
+            <button type="button" class="btn btn-success">Gravar</button>
+            <button type="button" class="btn btn-danger float-right">Remover usuário</button>
+        </div>
+    </form>
+</div>
+

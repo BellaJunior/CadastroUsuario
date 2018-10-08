@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="testeseniorsolutionModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tb_usuario">
+    <Key>
+      <PropertyRef Name="cd_id_usuario" />
+    </Key>
+    <Property Name="cd_id_usuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nm_nome" Type="String" MaxLength="120" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nm_sobrenome" Type="String" MaxLength="120" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nm_email" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="cd_id_detalhe" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tb_usuario_det" Relationship="Self.FK_tb_usuario_tb_usuario_det" FromRole="tb_usuario" ToRole="tb_usuario_det" />
+  </EntityType>
+  <EntityType Name="tb_usuario_det">
+    <Key>
+      <PropertyRef Name="cd_id_detalhe" />
+    </Key>
+    <Property Name="cd_id_detalhe" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nm_telefone" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nm_endereco" Type="String" MaxLength="120" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="tb_usuario" Relationship="Self.FK_tb_usuario_tb_usuario_det" FromRole="tb_usuario_det" ToRole="tb_usuario" />
+  </EntityType>
+  <Association Name="FK_tb_usuario_tb_usuario_det">
+    <End Role="tb_usuario_det" Type="Self.tb_usuario_det" Multiplicity="1" />
+    <End Role="tb_usuario" Type="Self.tb_usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_usuario_det">
+        <PropertyRef Name="cd_id_detalhe" />
+      </Principal>
+      <Dependent Role="tb_usuario">
+        <PropertyRef Name="cd_id_detalhe" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="testeseniorsolutionEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tb_usuario" EntityType="Self.tb_usuario" />
+    <EntitySet Name="tb_usuario_det" EntityType="Self.tb_usuario_det" />
+    <AssociationSet Name="FK_tb_usuario_tb_usuario_det" Association="Self.FK_tb_usuario_tb_usuario_det">
+      <End Role="tb_usuario_det" EntitySet="tb_usuario_det" />
+      <End Role="tb_usuario" EntitySet="tb_usuario" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

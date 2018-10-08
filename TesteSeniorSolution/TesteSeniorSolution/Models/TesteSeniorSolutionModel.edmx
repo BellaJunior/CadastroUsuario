@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="testeseniorsolutionModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tb_usuario">
+          <Key>
+            <PropertyRef Name="cd_id_usuario" />
+          </Key>
+          <Property Name="cd_id_usuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nm_nome" Type="varchar" MaxLength="120" Nullable="false" />
+          <Property Name="nm_sobrenome" Type="varchar" MaxLength="120" Nullable="false" />
+          <Property Name="nm_email" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="cd_id_detalhe" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_usuario_det">
+          <Key>
+            <PropertyRef Name="cd_id_detalhe" />
+          </Key>
+          <Property Name="cd_id_detalhe" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nm_telefone" Type="varchar" MaxLength="13" Nullable="false" />
+          <Property Name="nm_endereco" Type="varchar" MaxLength="120" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_tb_usuario_tb_usuario_det">
+          <End Role="tb_usuario_det" Type="Self.tb_usuario_det" Multiplicity="1" />
+          <End Role="tb_usuario" Type="Self.tb_usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_usuario_det">
+              <PropertyRef Name="cd_id_detalhe" />
+            </Principal>
+            <Dependent Role="tb_usuario">
+              <PropertyRef Name="cd_id_detalhe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="testeseniorsolutionModelStoreContainer">
+          <EntitySet Name="tb_usuario" EntityType="Self.tb_usuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_usuario_det" EntityType="Self.tb_usuario_det" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_tb_usuario_tb_usuario_det" Association="Self.FK_tb_usuario_tb_usuario_det">
+            <End Role="tb_usuario_det" EntitySet="tb_usuario_det" />
+            <End Role="tb_usuario" EntitySet="tb_usuario" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="testeseniorsolutionModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tb_usuario">
+          <Key>
+            <PropertyRef Name="cd_id_usuario" />
+          </Key>
+          <Property Name="cd_id_usuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nm_nome" Type="String" MaxLength="120" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nm_sobrenome" Type="String" MaxLength="120" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nm_email" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cd_id_detalhe" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tb_usuario_det" Relationship="Self.FK_tb_usuario_tb_usuario_det" FromRole="tb_usuario" ToRole="tb_usuario_det" />
+        </EntityType>
+        <EntityType Name="tb_usuario_det">
+          <Key>
+            <PropertyRef Name="cd_id_detalhe" />
+          </Key>
+          <Property Name="cd_id_detalhe" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nm_telefone" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nm_endereco" Type="String" MaxLength="120" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tb_usuario" Relationship="Self.FK_tb_usuario_tb_usuario_det" FromRole="tb_usuario_det" ToRole="tb_usuario" />
+        </EntityType>
+        <Association Name="FK_tb_usuario_tb_usuario_det">
+          <End Role="tb_usuario_det" Type="Self.tb_usuario_det" Multiplicity="1" />
+          <End Role="tb_usuario" Type="Self.tb_usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_usuario_det">
+              <PropertyRef Name="cd_id_detalhe" />
+            </Principal>
+            <Dependent Role="tb_usuario">
+              <PropertyRef Name="cd_id_detalhe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="testeseniorsolutionEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tb_usuario" EntityType="Self.tb_usuario" />
+          <EntitySet Name="tb_usuario_det" EntityType="Self.tb_usuario_det" />
+          <AssociationSet Name="FK_tb_usuario_tb_usuario_det" Association="Self.FK_tb_usuario_tb_usuario_det">
+            <End Role="tb_usuario_det" EntitySet="tb_usuario_det" />
+            <End Role="tb_usuario" EntitySet="tb_usuario" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="testeseniorsolutionModelStoreContainer" CdmEntityContainer="testeseniorsolutionEntities">
+          <EntitySetMapping Name="tb_usuario">
+            <EntityTypeMapping TypeName="testeseniorsolutionModel.tb_usuario">
+              <MappingFragment StoreEntitySet="tb_usuario">
+                <ScalarProperty Name="cd_id_usuario" ColumnName="cd_id_usuario" />
+                <ScalarProperty Name="nm_nome" ColumnName="nm_nome" />
+                <ScalarProperty Name="nm_sobrenome" ColumnName="nm_sobrenome" />
+                <ScalarProperty Name="nm_email" ColumnName="nm_email" />
+                <ScalarProperty Name="cd_id_detalhe" ColumnName="cd_id_detalhe" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_usuario_det">
+            <EntityTypeMapping TypeName="testeseniorsolutionModel.tb_usuario_det">
+              <MappingFragment StoreEntitySet="tb_usuario_det">
+                <ScalarProperty Name="cd_id_detalhe" ColumnName="cd_id_detalhe" />
+                <ScalarProperty Name="nm_telefone" ColumnName="nm_telefone" />
+                <ScalarProperty Name="nm_endereco" ColumnName="nm_endereco" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

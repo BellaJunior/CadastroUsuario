@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="testeseniorsolutionModelStoreContainer" CdmEntityContainer="testeseniorsolutionEntities">
+    <EntitySetMapping Name="tb_usuario">
+      <EntityTypeMapping TypeName="testeseniorsolutionModel.tb_usuario">
+        <MappingFragment StoreEntitySet="tb_usuario">
+          <ScalarProperty Name="cd_id_usuario" ColumnName="cd_id_usuario" />
+          <ScalarProperty Name="nm_nome" ColumnName="nm_nome" />
+          <ScalarProperty Name="nm_sobrenome" ColumnName="nm_sobrenome" />
+          <ScalarProperty Name="nm_email" ColumnName="nm_email" />
+          <ScalarProperty Name="cd_id_detalhe" ColumnName="cd_id_detalhe" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_usuario_det">
+      <EntityTypeMapping TypeName="testeseniorsolutionModel.tb_usuario_det">
+        <MappingFragment StoreEntitySet="tb_usuario_det">
+          <ScalarProperty Name="cd_id_detalhe" ColumnName="cd_id_detalhe" />
+          <ScalarProperty Name="nm_telefone" ColumnName="nm_telefone" />
+          <ScalarProperty Name="nm_endereco" ColumnName="nm_endereco" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

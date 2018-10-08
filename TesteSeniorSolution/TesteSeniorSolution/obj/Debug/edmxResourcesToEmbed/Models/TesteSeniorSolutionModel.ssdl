@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="testeseniorsolutionModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tb_usuario">
+    <Key>
+      <PropertyRef Name="cd_id_usuario" />
+    </Key>
+    <Property Name="cd_id_usuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nm_nome" Type="varchar" MaxLength="120" Nullable="false" />
+    <Property Name="nm_sobrenome" Type="varchar" MaxLength="120" Nullable="false" />
+    <Property Name="nm_email" Type="varchar" MaxLength="60" Nullable="false" />
+    <Property Name="cd_id_detalhe" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tb_usuario_det">
+    <Key>
+      <PropertyRef Name="cd_id_detalhe" />
+    </Key>
+    <Property Name="cd_id_detalhe" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nm_telefone" Type="varchar" MaxLength="13" Nullable="false" />
+    <Property Name="nm_endereco" Type="varchar" MaxLength="120" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_tb_usuario_tb_usuario_det">
+    <End Role="tb_usuario_det" Type="Self.tb_usuario_det" Multiplicity="1" />
+    <End Role="tb_usuario" Type="Self.tb_usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_usuario_det">
+        <PropertyRef Name="cd_id_detalhe" />
+      </Principal>
+      <Dependent Role="tb_usuario">
+        <PropertyRef Name="cd_id_detalhe" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="testeseniorsolutionModelStoreContainer">
+    <EntitySet Name="tb_usuario" EntityType="Self.tb_usuario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tb_usuario_det" EntityType="Self.tb_usuario_det" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_tb_usuario_tb_usuario_det" Association="Self.FK_tb_usuario_tb_usuario_det">
+      <End Role="tb_usuario_det" EntitySet="tb_usuario_det" />
+      <End Role="tb_usuario" EntitySet="tb_usuario" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
