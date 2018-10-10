@@ -3,39 +3,34 @@
     Layout = "~/Views/Shared/Master.cshtml";
 }
 
+<script src="~/Scripts/Paginas/CadUsuario.js"></script>
+
 <div class="pagina">
     <form>
         <fieldset>
             <legend class="card-title h3">Informe os dados do usuário para cadastro</legend>
-
             <div class="form-group">
                 <label for="m_nome_usuario" class="label">Nome</label>
                 <input id="m_nome_usuario" type="text" class="form-control" maxlength="120" />
             </div>
-
             <div class="form-group">
                 <label for="m_sobrenome_usuario" class="label">Sobrenome</label>
                 <input id="m_sobrenome_usuario" type="text" class="form-control" maxlength="120" />
             </div>
-
             <div class="form-group">
                 <label for="m_email_usuario" class="label">E-mail</label>
                 <input id="m_email_usuario" type="text" class="form-control" maxlength="60" />
             </div>
-
             <div class="form-group">
                 <label for="m_telefone_usuario" class="label">Telefone</label>
                 <input id="m_telefone_usuario" type="text" class="form-control" maxlength="60" />
             </div>
-
             <div class="form-group">
                 <label for="m_endereco_usuario" class="label">Endereço</label>
                 <input id="m_endereco_usuario" type="text" class="form-control" maxlength="60" />
             </div>
         </fieldset>
-
-        <button type="button" class="btn btn-success">Gravar</button>
-        <button type="button" class="btn btn-danger float-right">Cancelar</button>
+        <button id="btn_gravar" type="button" class="btn btn-success">Gravar</button>
+        <button id="btn_cancelar" type="button" class="btn btn-danger float-right">Cancelar</button>
     </form>
 </div>
-

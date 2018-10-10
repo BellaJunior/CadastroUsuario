@@ -34,7 +34,7 @@ namespace TesteSeniorSolution.Controllers
 
                 //Insere tabela de usuario
                 if (InsereTb_usuario(usuario))
-                    return base.Json("msg: Sucesso", JsonRequestBehavior.AllowGet);
+                    return base.Json("Sucesso", JsonRequestBehavior.AllowGet);
                 else
                 {
                     //Em caso de erro ao incluir registro do usuário excluir detalhe incluído do mesmo
@@ -45,12 +45,12 @@ namespace TesteSeniorSolution.Controllers
                         context.SaveChanges();
                     }
 
-                    return base.Json("msg: Erro", JsonRequestBehavior.AllowGet);
+                    return base.Json("ERRO", JsonRequestBehavior.AllowGet);
                 }
             }
             catch
             {
-                return base.Json("msg: Erro", JsonRequestBehavior.AllowGet);
+                return base.Json("ERRO", JsonRequestBehavior.AllowGet);
             }
         }
 

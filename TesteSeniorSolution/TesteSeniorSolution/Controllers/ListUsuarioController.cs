@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Linq;
 using System.Web.Mvc;
 using TesteSeniorSolution.Models;
@@ -34,8 +33,9 @@ namespace TesteSeniorSolution.Controllers
                                             cd_id_detalhe = usu.cd_id_detalhe,
                                             nm_endereco = detalheUsu.nm_endereco,
                                             nm_telefone = detalheUsu.nm_telefone
-                                        });
-                        return Json(JsonConvert.SerializeObject(resposta), JsonRequestBehavior.AllowGet);
+                                        }).ToArray();
+
+                        return Json(resposta, JsonRequestBehavior.AllowGet);
                     }
                 }
                 else
@@ -55,14 +55,14 @@ namespace TesteSeniorSolution.Controllers
                                             nm_endereco = detalheUsu.nm_endereco,
                                             nm_telefone = detalheUsu.nm_telefone
                                         }).ToArray();
-
-                        return Json(JsonConvert.SerializeObject(resposta), JsonRequestBehavior.AllowGet);
+                        
+                        return Json(resposta, JsonRequestBehavior.AllowGet);
                     }
                 }
             }
             catch
             {
-                return base.Json("msg: Erro", JsonRequestBehavior.AllowGet);
+                return base.Json("ERRO", JsonRequestBehavior.AllowGet);
             }
         }
 
@@ -77,18 +77,20 @@ namespace TesteSeniorSolution.Controllers
                     usuarioBD.nm_sobrenome = usuario.nm_sobrenome;
                     usuarioBD.nm_email = usuario.nm_email;
 
-                    tb_usuario_det usuarioDetDb = context.tb_usuario_det.First(ud => ud.cd_id_detalhe == usuarioDet.cd_id_detalhe);
+                    context.SaveChanges();
+
+                    tb_usuario_det usuarioDetDb = context.tb_usuario_det.First(ud => ud.cd_id_detalhe == usuarioBD.cd_id_detalhe);
                     usuarioDetDb.nm_endereco = usuarioDet.nm_endereco;
                     usuarioDetDb.nm_telefone = usuarioDet.nm_telefone;
 
                     context.SaveChanges();
 
-                    return base.Json("msg: Sucesso", JsonRequestBehavior.AllowGet);
+                    return base.Json("Sucesso", JsonRequestBehavior.AllowGet);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                return base.Json("msg: Erro", JsonRequestBehavior.AllowGet);
+                return base.Json("ERRO", JsonRequestBehavior.AllowGet);
             }
         }
 
@@ -99,19 +101,22 @@ namespace TesteSeniorSolution.Controllers
                 using (var context = new TesteSeniorSolutionEntities())
                 {
                     tb_usuario usuarioBD = context.tb_usuario.First(u => u.cd_id_usuario == usuario.cd_id_usuario);
+                    int cod_detalhe = usuarioBD.cd_id_detalhe;
                     context.tb_usuario.Remove(usuarioBD);
 
-                    tb_usuario_det usuarioDetDb = context.tb_usuario_det.First(ud => ud.cd_id_detalhe == usuarioDet.cd_id_detalhe);
+                    context.SaveChanges();
+
+                    tb_usuario_det usuarioDetDb = context.tb_usuario_det.First(ud => ud.cd_id_detalhe == cod_detalhe);
                     context.tb_usuario_det.Remove(usuarioDetDb);
 
                     context.SaveChanges();
 
-                    return base.Json("msg: Sucesso", JsonRequestBehavior.AllowGet);
+                    return base.Json("Sucesso", JsonRequestBehavior.AllowGet);
                 }
             }
             catch
             {
-                return base.Json("msg: Erro", JsonRequestBehavior.AllowGet);
+                return base.Json("ERRO", JsonRequestBehavior.AllowGet);
             }
         }
     }
