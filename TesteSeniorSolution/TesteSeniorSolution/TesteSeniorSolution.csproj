@@ -104,6 +104,7 @@
     <Content Include="Content\css\Bootstrap\bootstrap.min.css" />
     <Content Include="Content\css\estilo.css" />
     <Content Include="Content\css\ListUsuario.css" />
+    <Content Include="Content\Images\aguarde-gif.gif" />
     <Content Include="Global.asax" />
     <Content Include="Models\TesteSeniorSolutionModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -175,7 +176,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\Images\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
